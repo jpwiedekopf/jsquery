@@ -84,6 +84,14 @@ static GINKey *make_gin_query_key_minus_inf(uint32 hash);
 static int32 compare_gin_key_value(GINKey *arg1, GINKey *arg2);
 static int add_entry(Entries *e, Datum key, Pointer extra, bool pmatch);
 
+PGDLLEXPORT Datum gin_compare_jsonb_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_compare_partial_jsonb_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_extract_jsonb_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_extract_jsonb_query_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_consistent_jsonb_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_triconsistent_jsonb_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_debug_query_value_path(PG_FUNCTION_ARGS);
+
 PG_FUNCTION_INFO_V1(gin_compare_jsonb_value_path);
 PG_FUNCTION_INFO_V1(gin_compare_partial_jsonb_value_path);
 PG_FUNCTION_INFO_V1(gin_extract_jsonb_value_path);
@@ -92,13 +100,13 @@ PG_FUNCTION_INFO_V1(gin_consistent_jsonb_value_path);
 PG_FUNCTION_INFO_V1(gin_triconsistent_jsonb_value_path);
 PG_FUNCTION_INFO_V1(gin_debug_query_value_path);
 
-Datum gin_compare_jsonb_value_path(PG_FUNCTION_ARGS);
-Datum gin_compare_partial_jsonb_value_path(PG_FUNCTION_ARGS);
-Datum gin_extract_jsonb_value_path(PG_FUNCTION_ARGS);
-Datum gin_extract_jsonb_query_value_path(PG_FUNCTION_ARGS);
-Datum gin_consistent_jsonb_value_path(PG_FUNCTION_ARGS);
-Datum gin_triconsistent_jsonb_value_path(PG_FUNCTION_ARGS);
-Datum gin_debug_query_value_path(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_compare_jsonb_path_value(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_compare_partial_jsonb_path_value(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_extract_jsonb_path_value(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_extract_jsonb_query_path_value(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_consistent_jsonb_path_value(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_triconsistent_jsonb_path_value(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gin_debug_query_path_value(PG_FUNCTION_ARGS);
 
 PG_FUNCTION_INFO_V1(gin_compare_jsonb_path_value);
 PG_FUNCTION_INFO_V1(gin_compare_partial_jsonb_path_value);
@@ -108,13 +116,6 @@ PG_FUNCTION_INFO_V1(gin_consistent_jsonb_path_value);
 PG_FUNCTION_INFO_V1(gin_triconsistent_jsonb_path_value);
 PG_FUNCTION_INFO_V1(gin_debug_query_path_value);
 
-Datum gin_compare_jsonb_path_value(PG_FUNCTION_ARGS);
-Datum gin_compare_partial_jsonb_path_value(PG_FUNCTION_ARGS);
-Datum gin_extract_jsonb_path_value(PG_FUNCTION_ARGS);
-Datum gin_extract_jsonb_query_path_value(PG_FUNCTION_ARGS);
-Datum gin_consistent_jsonb_path_value(PG_FUNCTION_ARGS);
-Datum gin_triconsistent_jsonb_path_value(PG_FUNCTION_ARGS);
-Datum gin_debug_query_path_value(PG_FUNCTION_ARGS);
 
 static int
 add_entry(Entries *e, Datum key, Pointer extra, bool pmatch)

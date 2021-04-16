@@ -146,9 +146,7 @@ flattenJsQueryParseItem(StringInfo buf, JsQueryParseItem *item, bool onlyCurrent
 	return  pos;
 }
 
-PG_FUNCTION_INFO_V1(jsquery_in);
-Datum
-jsquery_in(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_in(PG_FUNCTION_ARGS)
 {
 	char				*in = PG_GETARG_CSTRING(0);
 	int32				len = strlen(in);
@@ -173,6 +171,7 @@ jsquery_in(PG_FUNCTION_ARGS)
 
 	PG_RETURN_NULL();
 }
+PG_FUNCTION_INFO_V1(jsquery_in);
 
 static void
 printHint(StringInfo buf, JsQueryHint hint)
@@ -396,9 +395,7 @@ printJsQueryItem(StringInfo buf, JsQueryItem *v, bool inKey, bool printBracketes
 		printJsQueryItem(buf, &elem, true, true);
 }
 
-PG_FUNCTION_INFO_V1(jsquery_out);
-Datum
-jsquery_out(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_out(PG_FUNCTION_ARGS)
 {
 	JsQuery			*in = PG_GETARG_JSQUERY(0);
 	StringInfoData	buf;
@@ -412,5 +409,6 @@ jsquery_out(PG_FUNCTION_ARGS)
 
 	PG_RETURN_CSTRING(buf.data);
 }
+PG_FUNCTION_INFO_V1(jsquery_out);
 
 

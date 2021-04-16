@@ -777,9 +777,7 @@ recursiveExecute(JsQueryItem *jsq, JsonbValue *jb, JsQueryItem *jsqLeftArg,
 	return res;
 }
 
-PG_FUNCTION_INFO_V1(jsquery_json_exec);
-Datum
-jsquery_json_exec(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_json_exec(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq = PG_GETARG_JSQUERY(0);
 	Jsonb			*jb = PG_GETARG_JSONB_P(1);
@@ -800,10 +798,9 @@ jsquery_json_exec(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res);
 }
+PG_FUNCTION_INFO_V1(jsquery_json_exec);
 
-PG_FUNCTION_INFO_V1(json_jsquery_exec);
-Datum
-json_jsquery_exec(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum json_jsquery_exec(PG_FUNCTION_ARGS)
 {
 	Jsonb			*jb = PG_GETARG_JSONB_P(0);
 	JsQuery			*jq = PG_GETARG_JSQUERY(1);
@@ -824,10 +821,9 @@ json_jsquery_exec(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res);
 }
+PG_FUNCTION_INFO_V1(json_jsquery_exec);
 
-PG_FUNCTION_INFO_V1(json_jsquery_filter);
-Datum
-json_jsquery_filter(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum json_jsquery_filter(PG_FUNCTION_ARGS)
 {
 	Jsonb			*jb = PG_GETARG_JSONB_P(0);
 	JsQuery			*jq = PG_GETARG_JSQUERY(1);
@@ -860,6 +856,7 @@ json_jsquery_filter(PG_FUNCTION_ARGS)
 
 	PG_RETURN_NULL();
 }
+PG_FUNCTION_INFO_V1(json_jsquery_filter);
 
 
 static int
@@ -971,9 +968,8 @@ compareJsQuery(JsQueryItem *v1, JsQueryItem *v2)
 	return res;
 }
 
-PG_FUNCTION_INFO_V1(jsquery_cmp);
-Datum
-jsquery_cmp(PG_FUNCTION_ARGS)
+
+PGDLLEXPORT Datum jsquery_cmp(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -990,10 +986,9 @@ jsquery_cmp(PG_FUNCTION_ARGS)
 
 	PG_RETURN_INT32(res);
 }
+PG_FUNCTION_INFO_V1(jsquery_cmp);
 
-PG_FUNCTION_INFO_V1(jsquery_lt);
-Datum
-jsquery_lt(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_lt(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -1010,10 +1005,10 @@ jsquery_lt(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res < 0);
 }
+PG_FUNCTION_INFO_V1(jsquery_lt);
 
-PG_FUNCTION_INFO_V1(jsquery_le);
-Datum
-jsquery_le(PG_FUNCTION_ARGS)
+
+PGDLLEXPORT Datum jsquery_le(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -1030,10 +1025,9 @@ jsquery_le(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res <= 0);
 }
+PG_FUNCTION_INFO_V1(jsquery_le);
 
-PG_FUNCTION_INFO_V1(jsquery_eq);
-Datum
-jsquery_eq(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_eq(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -1050,10 +1044,9 @@ jsquery_eq(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res == 0);
 }
+PG_FUNCTION_INFO_V1(jsquery_eq);
 
-PG_FUNCTION_INFO_V1(jsquery_ne);
-Datum
-jsquery_ne(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_ne(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -1070,10 +1063,9 @@ jsquery_ne(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res != 0);
 }
+PG_FUNCTION_INFO_V1(jsquery_ne);
 
-PG_FUNCTION_INFO_V1(jsquery_ge);
-Datum
-jsquery_ge(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_ge(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -1090,10 +1082,9 @@ jsquery_ge(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res >= 0);
 }
+PG_FUNCTION_INFO_V1(jsquery_ge);
 
-PG_FUNCTION_INFO_V1(jsquery_gt);
-Datum
-jsquery_gt(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_gt(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq1 = PG_GETARG_JSQUERY(0);
 	JsQuery			*jq2 = PG_GETARG_JSQUERY(1);
@@ -1110,6 +1101,7 @@ jsquery_gt(PG_FUNCTION_ARGS)
 
 	PG_RETURN_BOOL(res > 0);
 }
+PG_FUNCTION_INFO_V1(jsquery_gt);
 
 static void
 hashJsQuery(JsQueryItem *v, pg_crc32 *crc)
@@ -1193,9 +1185,7 @@ hashJsQuery(JsQueryItem *v, pg_crc32 *crc)
 	}
 }
 
-PG_FUNCTION_INFO_V1(jsquery_hash);
-Datum
-jsquery_hash(PG_FUNCTION_ARGS)
+PGDLLEXPORT Datum jsquery_hash(PG_FUNCTION_ARGS)
 {
 	JsQuery			*jq = PG_GETARG_JSQUERY(0);
 	JsQueryItem		v;
@@ -1210,4 +1200,5 @@ jsquery_hash(PG_FUNCTION_ARGS)
 
 	PG_RETURN_INT32(res);
 }
+PG_FUNCTION_INFO_V1(jsquery_hash);
 
